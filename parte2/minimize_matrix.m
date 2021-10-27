@@ -1,4 +1,4 @@
-function [Mr,Mi]  = minimize_matrix(A, B)
+function [Mr,Mi, W]  = minimize_matrix(A, B)
   
   [m, n] = size(A);
   k = 3;
