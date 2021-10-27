@@ -3,7 +3,7 @@ clc; clear;
 pkg load image;
 input_image = imread("barbara.jpg");
 
-tree_channels = false;
+tree_channels = true;
 
 if (tree_channels)
   [m, n, p] = size(input_image);
@@ -52,3 +52,4 @@ else
   imshow(output_image);
   title("Restored");
 endif
+
