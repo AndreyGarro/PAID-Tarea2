@@ -1,23 +1,22 @@
-clc; clear;
+function video_noise = create_noised_video(file_name)
+  
+  % Upload video
+  video = VideoReader(file_name);
 
-pkg load video;
-pkg load image;
+  % Adding noise to video
+  video_noise = add_noise(video);
 
-% Upload video
-video = VideoReader("video_input.mp4");
+  % Create the output video
+  video_output = VideoWriter("video_hpfbmf_noise.mp4");
 
-% Adding noise to video
-Y = add_noise(video);
+  frames = video.NumberOfFrames;
 
-% Create the output video
-video_output = VideoWriter("video_noise.mp4");
+  % Wrtiting the output noised video
+  for i = 1 : frames
+    writeVideo(video_output, video_noise(:, :, 1, i));
+  endfor
+  
+  close(video);
+  close(video_output);
 
-frames = video.NumberOfFrames;
-
-% Wrtiting the output noised video
-for i = 1 : frames
-  writeVideo(video_output, Y(:, :, :, i));
-endfor
-
-close(video);
-close(video_output);
+endfunction
