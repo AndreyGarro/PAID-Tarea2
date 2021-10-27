@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="Window" Position="[0 420 1066 660]" Resize="off" VPosition="center" windowStyle="docked">
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="Window" Position="[531 385 1066 660]" Resize="off" VPosition="center" windowStyle="docked">
     <GlobalSrc>%
 % El código fuente escrito aquí será ejecutado cuando
 % la ventana se haga visible. Funciona como el evento 'onLoad' de otros lenguajes.

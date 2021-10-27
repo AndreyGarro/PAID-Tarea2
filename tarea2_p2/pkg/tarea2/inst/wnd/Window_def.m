@@ -69,9 +69,11 @@ function Button_7_doIt(src, data, Window)
 % El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
 % Por defecto, todos los eventos están desactivdados, para activarlos debe activar
 % propertie 'generateCallback' from the properties editor
-waitfor(Help.figure);
 
+wnd = Help();
+waitfor(wnd.figure);
 
+refresh();
 end
 
 ## @deftypefn  {} {} Button_9_doIt (@var{src}, @var{data}, @var{Window})
@@ -103,11 +105,11 @@ end
 ## @end deftypefn
 function ret = show_Window()
   _scrSize = get(0, "screensize");
-  _xPos = (_scrSize(3) - 1050)/2;
+  _xPos = (_scrSize(3) - 1048)/2;
   _yPos = (_scrSize(4) - 621)/2;
    Window = figure ( ... 
 	'Color', [0.941 0.941 0.941], ...
-	'Position', [_xPos _yPos 1050 621], ...
+	'Position', [_xPos _yPos 1048 621], ...
 	'resize', 'off', ...
 	'windowstyle', 'docked', ...
 	'MenuBar', 'none');
@@ -280,24 +282,23 @@ function ret = show_Window()
 % la ventana se haga visible. Funciona como el evento 'onLoad' de otros lenguajes.
 %
 
-text = '..\img\interfaz.png';
+text = 'C:\Users\kimbe\OneDrive\Escritorio\tarea2\img\interfaz.png';
 
 A = imread(text);
 axes(Window.img1);
 imshow(A);
 
-text2 = '..\img\cargar.png';
+text2 = 'C:\Users\kimbe\OneDrive\Escritorio\tarea2\img\cargar.png';
 
 A = imread(text2);
 axes(Window.img3);
 imshow(A);
 
-text3 = '..\img\filtrar.png';
+text3 = 'C:\Users\kimbe\OneDrive\Escritorio\tarea2\img\filtrar.png';
 
 A = imread(text3);
 axes(Window.img4);
 imshow(A);
-
 
 
 

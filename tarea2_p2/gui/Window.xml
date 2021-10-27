@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="Window" Position="[0 420 1061 660]" Resize="off" VPosition="center" windowStyle="docked">
+    <GlobalSrc>%
+% El código fuente escrito aquí será ejecutado cuando
+% la ventana se haga visible. Funciona como el evento 'onLoad' de otros lenguajes.
+%
+
+text = '..\img\interfaz.png';
+
+A = imread(text);
+axes(Window.img1);
+imshow(A);
+
+text2 = '..\img\cargar.png';
+
+A = imread(text2);
+axes(Window.img3);
+imshow(A);
+
+text3 = '..\img\filtrar.png';
+
+A = imread(text3);
+axes(Window.img4);
+imshow(A);
+
+
+
+
+
+</GlobalSrc>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img1" Position="[-1 -12 1056 638]"/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Consolas" FontSize="11" FontWeight="normal" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="true" Name="btn1" Position="[136 239 221 40]" String="CARGAR y COMPRIMIR  IMAGEN" TooltipString="">% El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
+% Por defecto, todos los eventos están desactivdados, para activarlos debe activar
+% propertie 'generateCallback' from the properties editor
+
+
+pkg load image
+
+[file, path] = uigetfile;
+text = fullfile(path, file);
+
+A = imread(text);
+axes(Window.img3);
+imshow(A);
+
+q = get(Window.box1, 'string');
+disp(q);
+
+B = FastMedianFilter(A);
+
+cal = 3;
+com = 39;
+
+set(Window.text1, 'String', num2str(cal));
+set(Window.text2, 'String', num2str(com));
+
+axes(Window.img4);
+imshow(B);
+
+
+</uiControl>
+    <uiControl class="textCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Consolas" FontSize="12" FontWeight="bold" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="label1" Position="[10 23 198 19]" String="Compresion de imagenes" TooltipString=""/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="bold" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="true" Name="Button_7" Position="[1015 26 23 24]" String="?" TooltipString="">% El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
+% Por defecto, todos los eventos están desactivdados, para activarlos debe activar
+% propertie 'generateCallback' from the properties editor
+waitfor(Help.figure);
+
+</uiControl>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="6" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="true" Name="Button_9" Position="[985 584 50 22]" String="Guardar" TooltipString="">% El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
+% Por defecto, todos los eventos están desactivdados, para activarlos debe activar
+% propertie 'generateCallback' from the properties editor
+%B = get(Window.img4);
+%disp(B);
+
+axes(Window.img4);
+[file,path]=uiputfile({'*.jpg','JPG'},'Save Image As');
+f=getframe(Window.img4);
+[x,map]=frame2im(f); 
+imwrite(x,fullfile(path, file),'jpg');</uiControl>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img3" Position="[572 72 358 273]">text = '..\img\cargar.png';
+
+A = imread(text);
+axes(Window.img3);
+imshow(A);</uiControl>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img4" Position="[572 347 358 269]"/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_5" Position="[695 90 114 16]" String="Imagen a comprimir" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_6" Position="[690 360 134 16]" String="Imagen descomprimida" TooltipString=""/>
+    <uiControl class="editCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Arial" FontSize="11" FontWeight="normal" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="false" HorizontalAlignment="left" Name="box1" Position="[281 178 74 24]" String="" TooltipString="">% This code will be executed when the control lost focus and text has 
+% been changed or when press the &quot;enter&quot; key.
+% Por defecto, todos los eventos están desactivdados, para activarlos debe activar
+% la propiead have callback desde el editor de propiedades</uiControl>
+    <uiControl class="textCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Label_14" Position="[139 178 135 24]" String="Factor de cuantizacion" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="bold" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Label_15" Position="[950 395 55 16]" String="Métricas" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Label_16" Position="[915 440 43 16]" String="Calidad" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="Label_17" Position="[915 480 76 16]" String="Comprension" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="text1" Position="[1021 440 16 16]" String="" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="false" HorizontalAlignment="left" isAutoSize="true" Name="text2" Position="[1015 480 17 16]" String="" TooltipString=""/>
+</dialog>

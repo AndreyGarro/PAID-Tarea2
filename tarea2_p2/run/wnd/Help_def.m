@@ -27,7 +27,6 @@ function Button_7_doIt(src, data, Help)
 % El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
 % Por defecto, todos los eventos están desactivdados, para activarlos debe activar
 % propertie 'generateCallback' from the properties editor
-waitfor(Window.figure);
 close(Help.figure);
 
 

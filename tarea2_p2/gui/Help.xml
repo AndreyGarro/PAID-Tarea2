@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="Help" Position="[1061 496 382 584]" Resize="off" VPosition="center" windowStyle="normal">
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="Help" Position="[1078 496 382 584]" Resize="off" VPosition="center" windowStyle="normal">
     <GlobalSrc>%
 % El código fuente escrito aquí será ejecutado cuando
 % la ventana se haga visible. Funciona como el evento 'onLoad' de otros lenguajes.
@@ -17,7 +17,6 @@ imshow(A);
     <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.000 0.000 0.000]" GenerateCallBack="true" Name="Button_7" Position="[145 520 75 25]" String="ok" TooltipString="">% El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
 % Por defecto, todos los eventos están desactivdados, para activarlos debe activar
 % propertie 'generateCallback' from the properties editor
-waitfor(Window.figure);
 close(Help.figure);
 
 </uiControl>
