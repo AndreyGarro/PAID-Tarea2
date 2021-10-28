@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dialog Color="[0.941 0.941 0.941]" HPosition="center" Name="Window" Position="[-1 420 1065 660]" Resize="off" VPosition="center" windowStyle="normal">
+    <GlobalSrc>%
+% El código fuente escrito aquí será ejecutado cuando
+% la ventana se haga visible. Funciona como el evento 'onLoad' de otros lenguajes.
+%
+
+text = '..\img\interfaz.png';
+
+A = imread(text);
+axes(Window.img1);
+imshow(A);
+
+text2 = '..\img\cargar.png';
+
+A = imread(text2);
+axes(Window.img3);
+imshow(A);
+
+text3 = '..\img\filtrar.png';
+
+A = imread(text3);
+axes(Window.img4);
+imshow(A);
+
+
+
+
+
+</GlobalSrc>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img1" Position="[-6 -12 1056 638]"/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Consolas" FontSize="11" FontWeight="normal" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="true" Name="btn1" Position="[136 359 211 40]" String="CARGAR Y FILTRAR IMAGEN" TooltipString="">% El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
+% Por defecto, todos los eventos están desactivdados, para activarlos debe activar
+% propertie 'generateCallback' from the properties editor
+pkg load image
+
+[file, path] = uigetfile;
+text = fullfile(path, file);
+
+A = imread(text);
+axes(Window.img3);
+imshow(A);
+
+filtro = get(Window.combo1, 'Value');
+
+if (filtro == 1)
+
+B = mediana(A);
+
+
+elseif (filtro == 2)
+
+B = FastMedianFilter(A);
+
+else 
+A = imread('..\img\pajaro2.jpg');
+B = allhpdbmf(A);
+
+endif
+
+axes(Window.img4);
+imshow(B);
+
+
+</uiControl>
+    <uiControl class="textCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Consolas" FontSize="12" FontWeight="bold" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="label1" Position="[10 23 423 19]" String=" Eliminacion de Ruido del Tipo Salt and Pepper " TooltipString=""/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="bold" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="true" Name="Button_7" Position="[1015 26 23 24]" String="?" TooltipString="">% El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
+% Por defecto, todos los eventos están desactivdados, para activarlos debe activar
+% propertie 'generateCallback' from the properties editorç
+wnd = Help();
+waitfor(wnd.figure);
+
+
+</uiControl>
+    <uiControl class="cmbCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="italic" FontName="Arial" FontSize="8" FontWeight="bold" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="false" Name="combo1" Position="[160 270 170 31]" String="Mediana|Fast Median Filter|HPDBMF" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.451 0.451 0.451]" FontAngle="normal" FontName="Arial" FontSize="8" FontWeight="normal" ForegroundColor="[0.941 0.941 0.941]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_12" Position="[190 244 90 14]" String="TIPO DE FILTRADO" TooltipString=""/>
+    <uiControl class="buttonCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="6" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="true" Name="Button_9" Position="[985 584 50 22]" String="Guardar" TooltipString="">% El código que se indique aquí será ejecutado cuando el usuario presione en el botón.
+% Por defecto, todos los eventos están desactivdados, para activarlos debe activar
+% propertie 'generateCallback' from the properties editor
+%B = get(Window.img4);
+%disp(B);
+
+axes(Window.img4);
+[file,path]=uiputfile({'*.jpg','JPG'},'Save Image As');
+f=getframe(Window.img4);
+[x,map]=frame2im(f); 
+imwrite(x,fullfile(path, file),'jpg');</uiControl>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img3" Position="[572 72 358 273]">text = '..\img\cargar.png';
+
+A = imread(text);
+axes(Window.img3);
+imshow(A);</uiControl>
+    <uiControl class="imgCtrl" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" Name="img4" Position="[572 347 358 269]"/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_5" Position="[690 85 90 16]" String="Imagen Original" TooltipString=""/>
+    <uiControl class="textCtrl" BackgroundColor="[0.941 0.941 0.941]" FontAngle="normal" FontName="Arial" FontSize="10" FontWeight="normal" ForegroundColor="[0.451 0.451 0.451]" GenerateCallBack="false" HorizontalAlignment="center" isAutoSize="true" Name="Label_6" Position="[700 360 89 16]" String="Imagen Filtrada" TooltipString=""/>
+    <uiControl class="frameCtrl" BackgroundColor="[0.941 0.941 0.941]" FontName="Arial" FontSize="10" GenerateCallBack="false" Name="Frame_1" Position="[1055 310 90 22]" TooltipString=""/>
+</dialog>
