@@ -1,4 +1,4 @@
-function M2 = compression_testing(Q, Scale, image)
+function [M2, resized_image] = compression_testing(Q, Scale, image)
   image = imresize(image, [12 * Scale, 12 * Scale]);
   image = uint8(image);
   tic
@@ -17,5 +17,6 @@ function M2 = compression_testing(Q, Scale, image)
   HFC_I2 = sequential_search_algorithm(Ui, Mi2, W);
 
   M2 = apply_inverse_fft_matrix(HFC_R, HFC_I, LFC, Q);
+  resized_image = image;
   toc
 endfunction
